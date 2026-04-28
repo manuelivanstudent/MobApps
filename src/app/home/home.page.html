@@ -1,20 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      G00472904
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-input label="Search" placeholder="Movie Name" [(ngModel)]="keyword"></ion-input>
+<ion-button expand="block" (click)="openMovies()">SEARCH</ion-button>
+<ion-list>
+  <ion-item *ngFor="let movie of movies" lines="none">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <div class="movie-card">
+      <ion-icon [name]="(isFavourite(movie) | async) ? 'heart' : 'heart-outline'" class="fav-icon" (click)="toggleFavourite(movie)"></ion-icon>
+      
+      <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="movie-poster"/>
+
+      <h2>{{ movie.title }}</h2>
+      </div>
+
+  </ion-item>
+</ion-list>
 </ion-content>
