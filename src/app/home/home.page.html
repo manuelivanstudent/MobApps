@@ -1,25 +1,52 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+
     <ion-title>
       G00472904
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="goToFavourites()">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<ion-input label="Search" placeholder="Movie Name" [(ngModel)]="keyword"></ion-input>
-<ion-button expand="block" (click)="openMovies()">SEARCH</ion-button>
-<ion-list>
-  <ion-item *ngFor="let movie of movies" lines="none">
 
-    <div class="movie-card">
-      <ion-icon [name]="(isFavourite(movie) | async) ? 'heart' : 'heart-outline'" class="fav-icon" (click)="toggleFavourite(movie)"></ion-icon>
-      
-      <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="movie-poster"/>
+  <ion-input 
+    label="Search" 
+    placeholder="Movie Name" 
+    [(ngModel)]="keyword">
+  </ion-input>
 
-      <h2>{{ movie.title }}</h2>
+  <ion-button expand="block" (click)="openMovies()">
+    SEARCH
+  </ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let movie of movies" lines="none">
+
+      <div class="movie-card">
+
+        <ion-icon 
+          [name]="isFavourite(movie) ? 'heart' : 'heart-outline'"
+          class="fav-icon"
+          (click)="toggleFavourite(movie)">
+        </ion-icon>
+
+        <img 
+          [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
+          class="movie-poster"
+        />
+
+        <h2>{{ movie.title }}</h2>
+
       </div>
 
-  </ion-item>
-</ion-list>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
