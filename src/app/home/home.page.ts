@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonList, IonItem, IonIcon, IonButtons } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonList, IonItem, IonIcon, IonButtons, IonItemDivider } from '@ionic/angular/standalone';
 import { ServicesData } from '../services-data';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-imports: [ IonButtons, IonIcon, IonItem, IonButton, FormsModule, IonInput, IonHeader, IonToolbar, IonTitle, IonContent, IonList, NgFor, NgIf],
+imports: [IonButtons, IonIcon, IonItem, IonButton, FormsModule, IonInput, IonHeader, IonToolbar, IonTitle, IonContent, IonList, NgFor, NgIf, IonItemDivider],
 })
 export class HomePage {
 
@@ -34,6 +34,10 @@ export class HomePage {
   async openMovies() {
     await this.sd.set("kw", this.keyword);
     this.router.navigate(['/movies']);
+  }
+
+  openMovie(movie: any) {
+    this.router.navigate(['/movie-details', movie.id], { state: { movie } });
   }
 
   isFavourite(movie: any) {

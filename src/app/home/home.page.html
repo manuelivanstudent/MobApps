@@ -27,7 +27,7 @@
   </ion-button>
 
   <ion-list>
-    <ion-item *ngFor="let movie of movies" lines="none">
+    <ion-item *ngFor="let movie of movies" lines="none"(click)="openMovie(movie)">
 
       <div class="movie-card">
 
@@ -43,6 +43,12 @@
         />
 
         <h2>{{ movie.title }}</h2>
+
+        <p class="movie-description">
+          {{ movie.overview }}
+        </p>
+
+        <ion-item-divider class="movie-separator"></ion-item-divider>
 
       </div>
 

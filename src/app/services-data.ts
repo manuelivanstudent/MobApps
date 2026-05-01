@@ -51,4 +51,24 @@ export class ServicesData {
     const data = await response.json();
     return data.results;
   }
+
+  async searchMovies(keyword: string) {
+    const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(keyword)}&api_key=705ecf5dcca5df7a47ed180ed178bd52`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.results;
+  }
+
+  async getMovieDetails(id: number) {
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=705ecf5dcca5df7a47ed180ed178bd52`;
+    const response = await fetch(url);
+    return await response.json();
+  }
+
+  async getMovieCast(id: number) {
+    const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=705ecf5dcca5df7a47ed180ed178bd52`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.cast;
+  }
 }

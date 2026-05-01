@@ -1,28 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardTitle, IonCardContent, IonCardHeader, IonCardSubtitle } from '@ionic/angular/standalone';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ServicesData } from '../services-data';
-  
+import { CommonModule, NgFor } from '@angular/common';
+import { IonContent, IonHeader, IonToolbar, IonTitle, IonList, IonItem, IonLabel } from '@ionic/angular/standalone';
+
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.page.html',
   styleUrls: ['./movies.page.scss'],
   standalone: true,
-  imports: [IonCardTitle, IonCardHeader, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCardSubtitle, IonCardContent]
+  imports: [IonLabel, IonContent, IonHeader, IonToolbar, IonTitle, IonList, IonItem, CommonModule, NgFor]
 })
-export class MoviesPage implements OnInit {
+export class MoviesPage {
 
-  keyword: string = "";
+  movies: any[] = [];
 
-  constructor(private sd: ServicesData) { }
+  constructor(private sd: ServicesData, private router: Router) {}
 
-  ngOnInit() {
-    this.getkW();
+  async ngOnInit() {
+    const kw = await this.sd.get("kw");
+    this.movies = await this.sd.searchMovies(kw);
   }
 
-  async getkW() {
-   this.keyword = await this.sd.get('kw');
+  openMovie(movie: any) {
+    this.router.navigate(['/movie-details', movie.id]);
   }
-
 }

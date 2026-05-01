@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="goHome()">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>{{ movie?.title }}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="goToFavourites()">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <img 
+    *ngIf="movie?.poster_path"
+    [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+    class="poster"
+  />
+
+  <h1>{{ movie?.title }}</h1>
+
+  <p class="description">
+    {{ movie?.overview }}
+  </p>
+
+  <ion-button expand="block" color="primary" (click)="toggleFavourite()">
+    {{ isFavourite ? 'Remove from Favourites' : 'Add to Favourites' }}
+  </ion-button>
+
+  <h2>Cast</h2>
+
+  <div class="cast-list">
+    <div class="cast-card" *ngFor="let c of cast">
+      <img 
+        [src]="c.profile_path ? 'https://image.tmdb.org/t/p/w200' + c.profile_path : 'assets/no-image.png'"
+      />
+      <p class="actor-name">{{ c.name }}</p>
+      <p class="actor-role">{{ c.character }}</p>
+    </div>
+  </div>
+
+</ion-content>

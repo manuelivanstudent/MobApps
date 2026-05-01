@@ -1,0 +1,52 @@
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ServicesData } from '../services-data';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
+
+@Component({
+  selector: 'app-movie-details',
+  templateUrl: './movie-details.page.html',
+  styleUrls: ['./movie-details.page.scss'],
+  standalone: true,
+  imports: [IonButtons, IonButton, IonIcon, IonContent, IonHeader, IonToolbar, IonTitle, CommonModule, NgFor, NgIf
+  ]
+})
+export class MovieDetailsPage {
+
+  movie: any = null;
+  cast: any[] = [];
+  isFavourite = false;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private sd: ServicesData
+  ) {}
+
+  async ngOnInit() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.movie = await this.sd.getMovieDetails(id);
+    this.cast = await this.sd.getMovieCast(id);
+    const favs = await this.sd.getFavourites();
+    this.isFavourite = favs.some((f: any) => f.id === id);
+  }
+
+  goHome() {
+    this.router.navigate(['/home']);
+  }
+
+  goToFavourites() {
+    this.router.navigate(['/favourites']);
+  }
+
+  async toggleFavourite() {
+    if (this.isFavourite) {
+      this.sd.removeFavourite(this.movie.id);
+      this.isFavourite = false;
+    } else {
+      this.sd.addFavourite(this.movie);
+      this.isFavourite = true;
+    }
+  }
+}
