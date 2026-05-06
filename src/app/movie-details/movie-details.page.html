@@ -38,14 +38,12 @@
 
   <h2>Cast</h2>
 
-  <div class="cast-list">
-    <div class="cast-card" *ngFor="let c of cast">
-      <img 
-        [src]="c.profile_path ? 'https://image.tmdb.org/t/p/w200' + c.profile_path : 'assets/no-image.png'"
-      />
-      <p class="actor-name">{{ c.name }}</p>
-      <p class="actor-role">{{ c.character }}</p>
-    </div>
+  <div class="cast-card" *ngFor="let c of cast" (click)="openActor(c.id)">
+  <img 
+    [src]="c.profile_path ? 'https://image.tmdb.org/t/p/w200' + c.profile_path : 'assets/no-image.png'"
+  />
+  <p class="actor-name">{{ c.name }}</p>
+  <p class="actor-role">{{ c.character }}</p>
   </div>
 
 </ion-content>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>{{ actor?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <img 
+    *ngIf="actor?.profile_path"
+    [src]="'https://image.tmdb.org/t/p/w500' + actor.profile_path"
+    class="profile"
+  />
+
+  <h1>{{ actor?.name }}</h1>
+
+  <p><strong>Date of Birth:</strong> {{ actor?.birthday }}</p>
+
+  <p><strong>Also Known As:</strong></p>
+  <ul>
+    <li *ngFor="let aka of actor?.also_known_as">{{ aka }}</li>
+  </ul>
+
+  <h2>Biography</h2>
+  <p>{{ actor?.biography }}</p>
+
+  <h2>Other Movies</h2>
+  <div class="movie-list">
+    <div class="movie-card" *ngFor="let m of movies" (click)="router.navigate(['/movie-details', m.id])">
+      <img 
+        [src]="m.poster_path ? 'https://image.tmdb.org/t/p/w200' + m.poster_path : 'assets/no-image.png'"
+      />
+      <p>{{ m.title }}</p>
+    </div>
+  </div>
+
+</ion-content>

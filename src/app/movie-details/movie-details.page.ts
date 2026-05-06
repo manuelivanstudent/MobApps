@@ -49,4 +49,12 @@ export class MovieDetailsPage {
       this.isFavourite = true;
     }
   }
+
+  openPerson(id: number) {
+    this.router.navigate(['/actor-details', id]);
+  }
+
+  openActor(id: number) {
+    this.router.navigate(['/actor-details', id]);
+  }
 }

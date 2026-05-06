@@ -71,4 +71,17 @@ export class ServicesData {
     const data = await response.json();
     return data.cast;
   }
+
+  async getPersonDetails(id: number) {
+    const url = `https://api.themoviedb.org/3/person/${id}?api_key=705ecf5dcca5df7a47ed180ed178bd52`;
+    const response = await fetch(url);
+    return await response.json();
+  }
+
+  async getPersonMovies(id: number) {
+    const url = `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=705ecf5dcca5df7a47ed180ed178bd52`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.cast;
+  }
 }
