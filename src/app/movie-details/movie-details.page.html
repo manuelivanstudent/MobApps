@@ -1,13 +1,9 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
 
-    <ion-buttons slot="start">
-      <ion-button (click)="goHome()">
-        <ion-icon name="home-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-
-    <ion-title>{{ movie?.title }}</ion-title>
+    <ion-title>
+      G00472904
+    </ion-title>
 
     <ion-buttons slot="end">
       <ion-button (click)="goToFavourites()">
@@ -18,7 +14,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
 
   <img 
     *ngIf="movie?.poster_path"
@@ -39,11 +35,11 @@
   <h2>Cast</h2>
 
   <div class="cast-card" *ngFor="let c of cast" (click)="openActor(c.id)">
-  <img 
-    [src]="c.profile_path ? 'https://image.tmdb.org/t/p/w200' + c.profile_path : 'assets/no-image.png'"
-  />
-  <p class="actor-name">{{ c.name }}</p>
-  <p class="actor-role">{{ c.character }}</p>
+    <img 
+      [src]="c.profile_path ? 'https://image.tmdb.org/t/p/w200' + c.profile_path : 'assets/no-image.png'"
+    />
+    <p class="actor-name">{{ c.name }}</p>
+    <p class="actor-role">{{ c.character }}</p>
   </div>
 
 </ion-content>

@@ -7,8 +7,10 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let m of movies" (click)="openMovie(m)">
+      <img [src]="'https://image.tmdb.org/t/p/w500' + m.poster_path" style="width:80px;height:120px;object-fit:cover;margin-right:12px;" />
       <ion-label>
-        {{ m.title }}
+        <h2>{{ m.title }}</h2>
+        <p>{{ m.overview }}</p>
       </ion-label>
     </ion-item>
   </ion-list>

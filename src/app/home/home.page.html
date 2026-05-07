@@ -16,25 +16,24 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-input 
-    label="Search" 
-    placeholder="Movie Name" 
-    [(ngModel)]="keyword">
-  </ion-input>
+  <ion-input label="Search" placeholder="Movie Name" [(ngModel)]="keyword"></ion-input>
 
   <ion-button expand="block" (click)="openMovies()">
     SEARCH
   </ion-button>
 
-  <ion-list>
-    <ion-item *ngFor="let movie of movies" lines="none"(click)="openMovie(movie)">
+  <h2 style="margin-top: 20px; text-align: left;">Today's Trending Movies</h2>
 
-      <div class="movie-card">
+  <ion-list>
+
+    <div *ngFor="let movie of movies">
+
+      <div class="movie-card" (click)="openMovie(movie)">
 
         <ion-icon 
           [name]="isFavourite(movie) ? 'heart' : 'heart-outline'"
           class="fav-icon"
-          (click)="toggleFavourite(movie)">
+          (click)="toggleFavourite(movie); $event.stopPropagation()">
         </ion-icon>
 
         <img 
@@ -48,11 +47,12 @@
           {{ movie.overview }}
         </p>
 
-        <ion-item-divider class="movie-separator"></ion-item-divider>
-
       </div>
 
-    </ion-item>
+      <ion-item-divider class="movie-separator"></ion-item-divider>
+
+    </div>
+
   </ion-list>
 
 </ion-content>

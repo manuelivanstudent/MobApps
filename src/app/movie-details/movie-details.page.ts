@@ -3,14 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesData } from '../services-data';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.page.html',
   styleUrls: ['./movie-details.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonButton, IonIcon, IonContent, IonHeader, IonToolbar, IonTitle, CommonModule, NgFor, NgIf
-  ]
+  imports: [IonButton, IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonIcon, CommonModule, NgFor, NgIf, FormsModule]
 })
 export class MovieDetailsPage {
 
@@ -18,11 +18,7 @@ export class MovieDetailsPage {
   cast: any[] = [];
   isFavourite = false;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private sd: ServicesData
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router, private sd: ServicesData) {}
 
   async ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));

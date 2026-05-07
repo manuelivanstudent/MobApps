@@ -9,7 +9,8 @@ import { ServicesData } from '../services-data';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-imports: [IonButtons, IonIcon, IonItem, IonButton, FormsModule, IonInput, IonHeader, IonToolbar, IonTitle, IonContent, IonList, NgFor, NgIf, IonItemDivider],
+  standalone: true,
+  imports: [IonButtons, IonIcon, IonItem, IonButton, FormsModule, IonInput, IonHeader, IonToolbar, IonTitle, IonContent, IonList, NgFor, NgIf, IonItemDivider],
 })
 export class HomePage {
 

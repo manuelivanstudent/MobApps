@@ -3,14 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesData } from '../services-data';
 import { RouterModule } from '@angular/router';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonToolbar, IonTitle } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-actor-details',
   templateUrl: './actor-details.page.html',
   standalone: true,
-  imports: [IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, CommonModule, NgFor, NgIf, RouterModule
-  ]
+  imports: [IonContent, IonHeader, IonToolbar, IonTitle, CommonModule, NgFor, NgIf, RouterModule]
 })
 export class ActorDetailsPage {
 
